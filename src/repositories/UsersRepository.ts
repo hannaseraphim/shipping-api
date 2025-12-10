@@ -24,8 +24,8 @@ export class UsersRepository implements IUsersRepository {
     return true;
   }
 
-  async getUserByEmail(user: User): Promise<User | null> {
-    const result = await UserModel.findOne({ email: user.email }).lean();
+  async getUserByEmail(userEmail: string): Promise<User | null> {
+    const result = await UserModel.findOne({ email: userEmail }).lean();
     if (!result) return null;
     return result;
   }

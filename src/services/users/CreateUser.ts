@@ -28,7 +28,7 @@ export const CreateUserService = async (
   }
 
   // Existence check
-  const exists = await users.getUserByEmail(user);
+  const exists = await users.getUserByEmail(user.email);
   if (exists) {
     return { status: 409, message: "User already exists" };
   }
