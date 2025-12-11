@@ -1,5 +1,5 @@
-import type { User } from "../schemas/User.js";
-import UserModel from "../schemas/User.js";
+import type { User } from "../../schemas/User.js";
+import UserModel from "../../schemas/User.js";
 import type { IUsersRepository } from "./IUsersRepository.js";
 import validator from "validator";
 
