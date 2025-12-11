@@ -1,10 +1,10 @@
-import type { User } from "../../schemas/User.js";
+import { type IUser } from "../../schemas/User.js";
 
 export interface IUsersRepository {
-  getUsers(): Promise<User[]>;
-  createUser(user: User): Promise<string>;
-  updateUser(user: User): Promise<number>;
-  deleteUser(user: User): Promise<boolean>;
-  getUserByEmail(email: string): Promise<User | null>;
-  isUser(user: User): boolean;
+  getUsers(): Promise<IUser[]>;
+  createUser(user: IUser): Promise<string>;
+  updateUser(user: IUser): Promise<number>;
+  deleteUser(user: IUser): Promise<boolean>;
+  getUserByEmail(email: string): Promise<IUser | null>;
+  isUser(user: IUser): boolean;
 }
