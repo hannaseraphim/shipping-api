@@ -1,7 +1,7 @@
-import type { User } from "../../schemas/User.js";
+import type { IUser } from "../../schemas/User.js";
 import bcrypt from "bcrypt";
 import validator from "validator";
-import { UsersRepository } from "../../repositories/UsersRepository.js";
+import { UsersRepository } from "../../repositories/users/UsersRepository.js";
 import { config } from "dotenv";
 
 config();
@@ -11,11 +11,11 @@ const users = new UsersRepository();
 interface ServiceResponse {
   status: number;
   message: string;
-  user?: User;
+  user?: IUser;
 }
 
 export const CreateUserService = async (
-  user: User
+  user: IUser
 ): Promise<ServiceResponse> => {
   // Validates user type
   if (!users.isUser(user)) {
@@ -40,7 +40,7 @@ export const CreateUserService = async (
   );
 
   // Implements the hashed password
-  const payload: User = { ...user, password: hashedPassword };
+  const payload: IUser = { ...user, password: hashedPassword };
 
   // Creates the user itself
   const result = await users.createUser(payload);
