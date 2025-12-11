@@ -5,9 +5,11 @@ config();
 
 const MONGO_URL = process.env.MONGO_URI || "";
 
-mongoose.connect(MONGO_URL).then(() => {
-  console.log("[DATABASE] Connected to MongoDB");
-});
+export async function ConnectToDatabase() {
+  mongoose.connect(MONGO_URL).then(() => {
+    console.log("[DATABASE] Connected to MongoDB");
+  });
+}
 
 const connection: Connection = mongoose.connection;
 
