@@ -5,9 +5,9 @@ const CustomerSchema = new Schema({
   name: { type: String, required: true },
   contact: { type: String, required: true },
   phone: { type: String, required: true },
-  secondary_phone: { type: String, required: true },
+  secondary_phone: { type: String, required: false },
   email: { type: String, required: true },
-  secondary_email: { type: String, required: true },
+  secondary_email: { type: String, required: false },
   addresses: [
     {
       street: { type: String, required: true },
@@ -17,6 +17,7 @@ const CustomerSchema = new Schema({
       postal_code: { type: String, required: true },
       country: { type: String, required: true },
       references: { type: String, required: false },
+      coordinates: { lat: { type: Number }, lon: { type: Number } },
     },
   ],
   orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
