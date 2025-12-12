@@ -17,8 +17,13 @@ const OrderSchema = new Schema(
     product: [
       {
         id_product: { type: mongoose.Types.ObjectId, ref: "Product" },
-        weight: { type: Number },
-        size: { type: String },
+        weight: { type: Number }, // kg / g
+        size: {
+          // cm³
+          length: { type: Number }, // cm
+          height: { type: Number }, // cm
+          width: { type: Number }, // cm
+        },
       },
     ],
     current_status: {
@@ -43,7 +48,7 @@ const OrderSchema = new Schema(
     ],
     current_delivery_date: { type: Date, default: null },
     estimated_delivery_date: { type: Date },
-    tracking_code: { type: String },
+    tracking_code: { type: String, unique: true },
   },
   { timestamps: true }
 );
