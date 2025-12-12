@@ -1,5 +1,6 @@
 import mongoose, { Schema, type InferSchemaType } from "mongoose";
 import connection from "../database/index.js";
+import { ValidateTrackingCode } from "../utils/TrackingCode.js";
 
 export enum DeliveryStatus {
   PROCESSING = "PROCESSING",
@@ -48,7 +49,14 @@ const OrderSchema = new Schema(
     ],
     current_delivery_date: { type: Date, default: null },
     estimated_delivery_date: { type: Date },
-    tracking_code: { type: String, unique: true },
+    tracking_code: {
+      type: String,
+      unique: true,
+      validate: {
+        validator: ValidateTrackingCode,
+        message: "Invalid tracking code format",
+      },
+    },
   },
   { timestamps: true }
 );
