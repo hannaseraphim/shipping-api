@@ -10,7 +10,10 @@ export enum Stops {
 export type IStop = {
   identifier: string;
   neighbourhood: string;
-  coordinates?: { lat: number; lon: number };
+  location: {
+    type: "Point";
+    coordinates: [number, number];
+  };
   sequence?: number;
   status: Stops;
 };
