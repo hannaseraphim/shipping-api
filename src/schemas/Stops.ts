@@ -23,12 +23,24 @@ const StopRouteSchema = new Schema({
       identifier: { type: String },
       order: { type: mongoose.Types.ObjectId, ref: "Order" },
       neighbourhood: { type: String },
-      coordinates: { lat: { type: Number }, lon: { type: Number } },
+      location: {
+        type: {
+          type: String,
+          enum: ["Point"],
+          required: true,
+        },
+        coordinates: {
+          type: [Number],
+          required: true,
+        },
+      },
       sequence: { type: Number },
       status: { type: String, enum: Stops, default: Stops.PENDING },
     },
   ],
 });
+
+StopRouteSchema.index({ "stops.location": "2dsphere" });
 
 export type IStopRoute = InferSchemaType<typeof StopRouteSchema> & {
   _id: mongoose.Types.ObjectId;
