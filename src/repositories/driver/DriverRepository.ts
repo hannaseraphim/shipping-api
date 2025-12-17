@@ -2,7 +2,7 @@ import type { IDriver } from "../../schemas/Driver.js";
 import DriverModel from "../../schemas/Driver.js";
 import type { IDriverRepository } from "./IDriverRepository.js";
 
-export class DriverRepositorty implements IDriverRepository {
+export class DriverRepository implements IDriverRepository {
   async getDriver(driver: IDriver): Promise<IDriver | null> {
     const result = await DriverModel.findOne({ _id: driver._id });
     if (!result) return null;
